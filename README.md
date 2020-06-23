@@ -3,19 +3,19 @@
 ### __Create Lead__
 #### Request
 **Type**: Ingestion
-**Method**: POST /lead HTTP/1.1
-**Host**: https://api.verse.io/v1
+**Method**: POST /zapier HTTP/1.1
+**Host**: https://zapier.agentology.com/v1
 ##### Headers
 ```
 Content-Type: application/json
 Accept: application/json
-X-API-KEY: <Your Api Key>
+X-API-KEY: <Your Zapier Api Key>
 ```
 ##### Request
 The requests for the creation of a lead in Verse.io has the following possible parameters
 
-###### Sample
-``` js
+###### Sample 
+``` js 
 {
      lead: {
         firstName        : 'Buzz',
@@ -116,7 +116,7 @@ inputFields: [
     	label :  'Lead Source',
 	},
 	{
-    	key :  'externalLeadId',
+    	key :  'zapierLeadId',
     	type :  'string',
     	helpText:  '(External Lead Id) Should be used to reference your lead.',
     	label :  'External Lead Id',
@@ -154,7 +154,7 @@ inputFields: [
 ],
 ```
 
-##### Response
+##### Response 
 The response will contain an UUID which is the ID for the lead if it is created and not blocked based on duplication rules and other user settings
 
 ``` js
@@ -166,19 +166,19 @@ The response will contain an UUID which is the ID for the lead if it is created 
 ### End Conversation
 #### Request
 **Type**: Ingestion
-**Method**: POST /leads/end-conversation HTTP/1.1
-**Host**: https://api.verse.io/v1
+**Method**: POST /zapier/end-conversation HTTP/1.1
+**Host**: https://zapier.agentology.com/v1
 ##### Headers
 ```
 Content-Type: application/json
 Accept: application/json
-X-API-KEY: <Your Api Key>
+X-API-KEY: <Your Zapier Api Key>
 ```
 ##### Request
 The requests ends a converation Verse.io is having with your lead
 
-###### Sample
-``` js
+###### Sample 
+``` js 
 {
     "searchValue" : "buzz@aol.com"
 }
@@ -196,7 +196,7 @@ inputFields: [
 ],
 ```
 
-##### Response
+##### Response 
 The response will a status code of success of failure (if there is no lead for the search parameter, etc) and a body payload that will contain basic lead information to use in subsequent Zaps
 
 ``` js
@@ -221,13 +221,13 @@ The response will a status code of success of failure (if there is no lead for t
 ### Lead Activity Notification
 #### Request
 **Type**: Outbound Webhook
-**Method**: POST /hooks/standard/{user_id}/{webhook_hook_id}/
-**Host**: https://webhooks.your_domain.com
-> Note: The `user_id` and `webhook_hook_id` are both set on your domain's side of the communication. We do not have any control over that.
+**Method**: POST /hooks/standard/{zapier_id}/{zapier_hook_id}/
+**Host**: https://hooks.zapier.com
+> Note: The `zapier_id` and `zapier_hook_id` are both set on zapier's side of the communication. We do not have any control over that.
 
 #### Payload
 
-##### Sample
+##### Sample 
 ```js
 {
     id                      : "5261a2b5-ddf7-11e8-ba7d-0a04f6df74e2",
@@ -255,78 +255,78 @@ The response will a status code of success of failure (if there is no lead for t
 ``` js
 outputFields: [
     {
-      key: 'channelWebsite',
+      key: 'channelWebsite', 
       label: 'Lead Channel Website'
     },
     {
-      key: 'city',
+      key: 'city', 
       label: 'Lead City'
     },
     {
-      key: 'email',
+      key: 'email', 
       label: 'Lead Email'
     },
     {
-      key: 'externalLeadId',
+      key: 'externalLeadId', 
       label: 'External Lead Id'
     },
     {
-      key: 'firstName',
+      key: 'firstName', 
       label: 'Lead First Name'
     },
     {
-      key: 'id',
+      key: 'id', 
       label: 'Lead Id'
     },
     {
-      key: 'lastName',
+      key: 'lastName', 
       label: 'Lead Last Name'
     },
     {
-      key: 'leadComment',
+      key: 'leadComment', 
       label: 'Lead Comment'
     },
     {
-      key: 'leadType',
+      key: 'leadType', 
       label: 'Lead Type'
     },
     {
-      key: 'link',
+      key: 'link', 
       label: 'Lead Link'
     },
     {
-      key: 'message',
+      key: 'message', 
       label: 'Verse Note'
     },
     {
-      key: 'postalCode',
+      key: 'postalCode', 
       label: 'Lead Postal Code'
     },
     {
-      key: 'state',
+      key: 'state', 
       label: 'Lead State'
     },
     {
-      key: 'street',
+      key: 'street', 
       label: 'Lead Street Address'
     },
     {
-      key: 'title',
+      key: 'title', 
       label: 'Verse Type'
     },
 ]
-```
+```    
 
 ### Lead Unqualified Notification
 #### Request
 **Type**: Outbound Webhook
-**Method**: POST /hooks/standard/{user_id}/{webhook_hook_id}/
-**Host**: https://webhooks.your_domain.com
-> Note: The `user_id` and `webhook_hook_id` are both set on you domain's side of the communication. We do not have any control over that.
+**Method**: POST /hooks/standard/{zapier_id}/{zapier_hook_id}/
+**Host**: https://hooks.zapier.com
+> Note: The `zapier_id` and `zapier_hook_id` are both set on zapier's side of the communication. We do not have any control over that.
 
 #### Payload
 
-##### Sample
+##### Sample 
 > Note: `reason_unqualified` is dynamic based on the reason we deemed your lead unqualified
 ```js
 {
@@ -427,19 +427,19 @@ outputFields: [
         label: 'Custom Questions'
     },
 ]
-```
+```    
 
 
 ### Lead Qualified Notification
 #### Request
 **Type**: Outbound Webhook
-**Method**: POST /hooks/standard/{user_id}/{webhook_hook_id}/
-**Host**: https://webhooks.your_domain.com
-> Note: The `user_id` and `webhook_hook_id` are both set on your domain's side of the communication. We do not have any control over that.
+**Method**: POST /hooks/standard/{zapier_id}/{zapier_hook_id}/
+**Host**: https://hooks.zapier.com
+> Note: The `zapier_id` and `zapier_hook_id` are both set on zapier's side of the communication. We do not have any control over that.
 
 #### Payload
 
-##### Sample
+##### Sample 
 ```js
 {
     channelWebsite          : "Referral Exchange",
@@ -535,4 +535,4 @@ outputFields: [
         label: 'Custom Questions'
     },
 ]
-```
+```    

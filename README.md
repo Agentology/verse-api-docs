@@ -250,7 +250,6 @@ The response will a status code of success of failure (if there is no lead for t
     leadType                : "seller",
     link                    : "https://app.verse.io/leads/5261a2b5-ddf7-11e8-ba7d-0a04f6df74e2",
     message                 : "Outbound Forwarded",
-    mortgage                : null,
     phone                   : "(619) 426-8081",
     postalCode              : null,
     state                   : "NC",

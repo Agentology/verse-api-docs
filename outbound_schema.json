@@ -1,0 +1,283 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://verse.io/schema.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "event": "lead_created",
+            "title": "Lead Created",
+            "message": "New Lead Created",
+            "channelWebsite": "Manual Lead",
+            "city": null,
+            "email": "erica@yahoo.com",
+            "externalLeadId": null,
+            "firstName": "Erica",
+            "id": "a14c145f-e497-4714-b3b5-eb47dde24b27",
+            "lastName": "Wright",
+            "leadComment": null,
+            "leadType": "mortgage",
+            "link": "https://app.verse.io/leads/a14c145f-e497-4714-b3b5-eb47dde24b27",
+            "phone": "+16191234567",
+            "postalCode": "29680",
+            "state": null,
+            "street": null,
+            "customQuestions" : {}
+        },
+        {
+            "event": "lead_activity",
+            "title": "Unqualified Lead",
+            "message": "We've Unqualified this lead for the following reason: Unresponsive | After 190 days of trying to get a hold of Amada, we've determined this buyer isn't ready to 'take' the next step due to being unresponsive.",
+            "reasonUnqualified": "Unresponsive",
+            "customQuestions": {
+              "Working with another agent?": "Yes"
+            },
+            "channelWebsite": "facebook.com",
+            "city": "Las Vegas",
+            "email": "amada@gmail.com",
+            "externalLeadId": "27fdd7c8-77aa-4295-b623-e959a4777ecb",
+            "firstName": "Amada",
+            "id": "1c98e802-de0d-4412-84c3-50cab6f121dc",
+            "lastName": "Jose",
+            "leadComment": "After 190 days of trying to get a hold of Amada, we've determined this buyer isn't ready to take the next step due to being unresponsive.",
+            "leadType": "buyer",
+            "link": "https://app.verse.io/leads/1c98e802-de0d-4412-84c3-50cab6f121dc",
+            "phone": "+13231234567",
+            "postalCode": "90035",
+            "state": "CA",
+            "street": "5237 Sun Valley Ave"
+          }
+    ],
+    "required": [
+        "event",
+        "title",
+        "message",
+        "channelWebsite",
+        "city",
+        "email",
+        "externalLeadId",
+        "firstName",
+        "id",
+        "lastName",
+        "leadComment",
+        "leadType",
+        "link",
+        "phone",
+        "postalCode",
+        "state",
+        "street"
+    ],
+    "additionalProperties": true,
+    "properties": {
+        "event": {
+            "$id": "#/properties/event",
+            "enum": [ "lead_activity", "lead_created", "lead_qualify", "lead_unqualify"],
+            "title": "The event schema",
+            "description": "The Type of event that is being sent.",
+            "default": "",
+            "examples": [
+                "lead_activity",
+                "lead_created",
+                "lead_qualify",
+                "lead_unqualify"
+            ]
+        },
+        "title": {
+            "$id": "#/properties/title",
+            "enum": [
+                "Lead Created",
+                "Qualified Lead",
+                "Unqualified Lead",
+                "Inbound SMS",
+                "Outbound SMS",
+                "Concierge Note",
+                "Outbound Email",
+                "Inbound Email",
+                "Outbound Call Attempt",
+                "Inbound Call Received",
+                "Live Transfer Attempt",
+                "Call Forwarded"
+            ],
+            "title": "The title schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Lead Created"
+            ]
+        },
+        "message": {
+            "$id": "#/properties/message",
+            "type": "string",
+            "title": "The message schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "New Lead Created"
+            ]
+        },
+        "channelWebsite": {
+            "$id": "#/properties/channelWebsite",
+            "type": ["null", "string"],
+            "title": "The channelWebsite schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": null,
+            "examples": [
+                "Manual Lead"
+            ]
+        },
+        "city": {
+            "$id": "#/properties/city",
+            "type": ["null", "string"],
+            "title": "The city schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": null,
+            "examples": [
+                null
+            ]
+        },
+        "email": {
+            "$id": "#/properties/email",
+            "type": ["null", "string"],
+            "title": "The email schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": null,
+            "examples": [
+                "erica@yahoo.com"
+            ]
+        },
+        "externalLeadId": {
+            "$id": "#/properties/externalLeadId",
+            "type": ["null", "string"],
+            "title": "The externalLeadId schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": null,
+            "examples": [
+                null
+            ]
+        },
+        "firstName": {
+            "$id": "#/properties/firstName",
+            "type": ["null", "string"],
+            "title": "The firstName schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": null,
+            "examples": [
+                "Erica"
+            ]
+        },
+        "id": {
+            "$id": "#/properties/id",
+            "type": "string",
+            "format": "uri",
+            "pattern": "^urn:uuid:",
+            "title": "The id schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "a14c145f-e497-4714-b3b5-eb47dde24b27"
+            ]
+        },
+        "lastName": {
+            "$id": "#/properties/lastName",
+            "type": ["null", "string"],
+            "title": "The lastName schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": null,
+            "examples": [
+                null,
+                "Wright"
+            ]
+        },
+        "leadComment": {
+            "$id": "#/properties/leadComment",
+            "type": ["null", "string"],
+            "title": "The leadComment schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": null,
+            "examples": [
+                null,
+                "After 190 days of trying to get a hold of Erica, we've determined this buyer isn't ready to take the next step due to being unresponsive."
+            ]
+        },
+        "leadType": {
+            "$id": "#/properties/leadType",
+            "type": ["null", "string"],
+            "title": "The leadType schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": null,
+            "examples": [
+                null,
+                "buyer",
+                "seller",
+                "mortgage"
+            ]
+        },
+        "link": {
+            "$id": "#/properties/link",
+            "type": "string",
+            "title": "The link schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "https://app.verse.io/leads/bea2632d-edf0-4978-988e-f04893f8582b"
+            ]
+        },
+        "phone": {
+            "$id": "#/properties/phone",
+            "type": ["null", "string"],
+            "title": "The phone schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": null,
+            "examples": [
+                null,
+                "+16191234567"
+            ]
+        },
+        "postalCode": {
+            "$id": "#/properties/postalCode",
+            "type": ["null", "string"],
+            "title": "The postalCode schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": null,
+            "examples": [
+                null,
+                "92101"
+            ]
+        },
+        "state": {
+            "$id": "#/properties/state",
+            "type": ["null", "string"],
+            "title": "The state schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": null,
+            "examples": [
+                null,
+                "CA"
+            ]
+        },
+        "street": {
+            "$id": "#/properties/street",
+            "type": ["null", "string"],
+            "title": "The street schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": null,
+            "examples": [
+                null,
+                "123 Main St"
+            ]
+        },
+        "customQuestions" : {
+            "$id": "#/properties/customQuestions",
+            "type": "object",
+            "title": "The Custom Questions schema",
+            "description": "This schema can be an empty object or an object of strings : strings",
+            "default": {},
+            "examples": [
+                {},
+                { "Working with another agent?": "Yes" }
+            ]
+        }
+    }
+}

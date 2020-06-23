@@ -3,8 +3,11 @@
 ### __Create Lead__
 #### Request
 **Type**: Ingestion
+
 **Method**: POST /zapier HTTP/1.1
+
 **Host**: https://zapier.agentology.com/v1
+
 ##### Headers
 ```
 Content-Type: application/json
@@ -57,99 +60,99 @@ inputFields: [
 		label :  'Last Name',
 	},
 	{
-    	key :  'email',
-    	type :  'string',
-    	helpText:  '(Email) Can be any value - field is capped at 125 characters.',
-    	label :  'Email',
+		key :  'email',
+		type :  'string',
+		helpText:  '(Email) Can be any value - field is capped at 125 characters.',
+		label :  'Email',
 	},
 	{
-    	key :  'phoneNumber',
-    	type :  'string',
-    	helpText:  '(Phone Number) Enter the lead\'s phone number',
-    	label :  'Phone Number',
-    	required:  true,
+		key :  'phoneNumber',
+		type :  'string',
+		helpText:  '(Phone Number) Enter the lead\'s phone number',
+		label :  'Phone Number',
+		required:  true,
 	},
 	{
-    	key :  'type',
-    	type :  'string',
-    	label :  'Lead Type',
-    	choices : {
-    	buyer :  'buyer',
-    	seller:  'seller',
-    	mortgage:  'mortgage',
-	},
-	},
-	{
-    	key :  'street',
-    	type :  'string',
-    	helpText:  '(Street Address) Can be any value - field is capped at 85 characters.',
-    	label :  'Street Address',
+		key :  'type',
+		type :  'string',
+		label :  'Lead Type',
+		choices : {
+			buyer :  'buyer',
+			seller:  'seller',
+			mortgage:  'mortgage',
+		},
 	},
 	{
-    	key :  'city',
-    	type :  'string',
-    	helpText:  '(City) Can be any value - field is capped at 85 characters.',
-    	label :  'City',
+		key :  'street',
+		type :  'string',
+		helpText:  '(Street Address) Can be any value - field is capped at 85 characters.',
+		label :  'Street Address',
 	},
 	{
-    	key :  'state',
-    	type :  'string',
-    	helpText:  '(State) Can be any value - field is capped at 85 characters.',
-    	label :  'State',
+		key :  'city',
+		type :  'string',
+		helpText:  '(City) Can be any value - field is capped at 85 characters.',
+		label :  'City',
 	},
 	{
-    	key :  'postalCode',
-    	type :  'string',
-    	helpText:  '(Postal Code) Valid postal codes for US and Canada only',
-    	label :  'Postal Code',
+		key :  'state',
+		type :  'string',
+		helpText:  '(State) Can be any value - field is capped at 85 characters.',
+		label :  'State',
 	},
 	{
-    	key :  'leadComment',
-    	type :  'text',
-    	helpText:  '(Lead Comment) Can be any value - field is capped at 1024 characters.',
-    	label :  'Lead Comment',
+		key :  'postalCode',
+		type :  'string',
+		helpText:  '(Postal Code) Valid postal codes for US and Canada only',
+		label :  'Postal Code',
 	},
 	{
-    	key :  'channelWebsite',
-    	type :  'string',
-    	helpText:  '(Lead Source) Can be any value - field is capped at 85 characters.',
-    	label :  'Lead Source',
+		key :  'leadComment',
+		type :  'text',
+		helpText:  '(Lead Comment) Can be any value - field is capped at 1024 characters.',
+		label :  'Lead Comment',
 	},
 	{
-    	key :  'zapierLeadId',
-    	type :  'string',
-    	helpText:  '(External Lead Id) Should be used to reference your lead.',
-    	label :  'External Lead Id',
+		key :  'channelWebsite',
+		type :  'string',
+		helpText:  '(Lead Source) Can be any value - field is capped at 85 characters.',
+		label :  'Lead Source',
 	},
 	{
-    	key:  'agent.firstName',
-    	type:  'string',
-    	helpText:  '(Agent First Name) Can be any value - field is capped at 85 characters.',
-    	label:  'Agent First Name'
+		key :  'zapierLeadId',
+		type :  'string',
+		helpText:  '(External Lead Id) Should be used to reference your lead.',
+		label :  'External Lead Id',
 	},
 	{
-    	key:  'agent.lastName',
-    	type:  'string',
-    	helpText:  '(Agent Last Name) Can be any value - field is capped at 85 characters.',
-    	label:  'Agent Last Name'
+		key:  'agent.firstName',
+		type:  'string',
+		helpText:  '(Agent First Name) Can be any value - field is capped at 85 characters.',
+		label:  'Agent First Name'
 	},
 	{
-    	key:  'agent.email',
-    	type:  'string',
-    	helpText:  '(Agent Email) Can be any value - field is capped at 125 characters.',
-    	label:  'Agent Email'
+		key:  'agent.lastName',
+		type:  'string',
+		helpText:  '(Agent Last Name) Can be any value - field is capped at 85 characters.',
+		label:  'Agent Last Name'
 	},
 	{
-    	key:  'agent.phone',
-    	type:  'string',
-    	helpText:  '(Agent Phone Number) Enter the agent\'s phone number',
-    	label:  'Agent Phone Number'
+		key:  'agent.email',
+		type:  'string',
+		helpText:  '(Agent Email) Can be any value - field is capped at 125 characters.',
+		label:  'Agent Email'
 	},
 	{
-    	key:  'agent.calendly',
-    	type:  'string',
-    	helpText:  '(Agent Calendly Link) Enter the agent\'s calendly link',
-    	label:  'Agent Calendly Link'
+		key:  'agent.phone',
+		type:  'string',
+		helpText:  '(Agent Phone Number) Enter the agent\'s phone number',
+		label:  'Agent Phone Number'
+	},
+	{
+		key:  'agent.calendly',
+		type:  'string',
+		helpText:  '(Agent Calendly Link) Enter the agent\'s calendly link',
+		label:  'Agent Calendly Link'
 	}
 ],
 ```
@@ -166,8 +169,11 @@ The response will contain an UUID which is the ID for the lead if it is created 
 ### End Conversation
 #### Request
 **Type**: Ingestion
+
 **Method**: POST /zapier/end-conversation HTTP/1.1
+
 **Host**: https://zapier.agentology.com/v1
+
 ##### Headers
 ```
 Content-Type: application/json
@@ -221,8 +227,11 @@ The response will a status code of success of failure (if there is no lead for t
 ### Lead Activity Notification
 #### Request
 **Type**: Outbound Webhook
+
 **Method**: POST /hooks/standard/{zapier_id}/{zapier_hook_id}/
+
 **Host**: https://hooks.zapier.com
+
 > Note: The `zapier_id` and `zapier_hook_id` are both set on zapier's side of the communication. We do not have any control over that.
 
 #### Payload
@@ -320,8 +329,11 @@ outputFields: [
 ### Lead Unqualified Notification
 #### Request
 **Type**: Outbound Webhook
+
 **Method**: POST /hooks/standard/{zapier_id}/{zapier_hook_id}/
+
 **Host**: https://hooks.zapier.com
+
 > Note: The `zapier_id` and `zapier_hook_id` are both set on zapier's side of the communication. We do not have any control over that.
 
 #### Payload
@@ -433,8 +445,11 @@ outputFields: [
 ### Lead Qualified Notification
 #### Request
 **Type**: Outbound Webhook
+
 **Method**: POST /hooks/standard/{zapier_id}/{zapier_hook_id}/
+
 **Host**: https://hooks.zapier.com
+
 > Note: The `zapier_id` and `zapier_hook_id` are both set on zapier's side of the communication. We do not have any control over that.
 
 #### Payload

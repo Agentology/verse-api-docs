@@ -34,7 +34,7 @@ The requests for the creation of a lead in Verse.io has the following possible p
         channelWebsite   : 'Verse',
         externalLeadId   : 'f30d896a-1317-4814-88ca-ff71c40bead1'
     },
-    agent: {
+    dynamic_agent: {
         firstName: 'James',
         lastName: 'Bond',
         email: '007@verse.io',

@@ -255,6 +255,7 @@ The response will a status code of success of failure (if there is no lead for t
     state                   : "NC",
     street                  : "Yadkinville",
     title                   : "Verse Activity Log",
+    event                   : "lead_activity"
 }
 ```
 
@@ -322,6 +323,10 @@ outputFields: [
       key: 'title',
       label: 'Verse Type'
     },
+    {
+      key: 'event',
+      label: 'Verse Event'
+    }
 ]
 ```
 
@@ -357,6 +362,7 @@ outputFields: [
     state                   : "NC",
     street                  : "Yadkinville",
     title                   : "Unqualified Lead",
+    event                   : "lead_unqualify",
     customQuestions         : {},
 }
 ```
@@ -429,6 +435,10 @@ outputFields: [
         key: 'title',
         label: 'Verse Type'
     },
+    {
+        key: 'event',
+        label: 'Verse Event'
+    }
     {
         key: 'reasonUnqualified',
         label : 'Lead Reason Unqualified'
@@ -472,6 +482,7 @@ outputFields: [
     state                   : "NC",
     street                  : "Yadkinville",
     title                   : "Qualified Lead",
+    event                   : "lead_qualify",
     customQuestions         : {},
 }
 ```
@@ -545,6 +556,10 @@ outputFields: [
         label: 'Verse Type'
     },
     {
+        key: 'event',
+        label: 'Verse Event'
+    },
+    {
         key: 'customQuestions',
         label: 'Custom Questions'
     },
@@ -583,6 +598,7 @@ outputFields: [
     state                   : "NC",
     street                  : "Yadkinville",
     title                   : "Lead Created",
+    event                   : "lead_created",
 }
 ```
 
@@ -653,6 +669,10 @@ outputFields: [
     {
         key: 'title',
         label: 'Verse Type'
+    },
+    {
+        key: 'event',
+        label: 'Verse Event'
     }
 ]
 ```

@@ -24,6 +24,7 @@
             "postalCode": "29680",
             "state": null,
             "street": null,
+            "userId" : "3fc665d4-4016-4f95-a9f4-374530d41640",
             "customQuestions" : {}
         },
         {
@@ -47,7 +48,8 @@
             "phone": "+13231234567",
             "postalCode": "90035",
             "state": "CA",
-            "street": "5237 Sun Valley Ave"
+            "street": "5237 Sun Valley Ave",
+            "userId" : "3fc665d4-4016-4f95-a9f4-374530d41640"
           }
     ],
     "required": [
@@ -67,7 +69,8 @@
         "phone",
         "postalCode",
         "state",
-        "street"
+        "street",
+        "userId"
     ],
     "additionalProperties": true,
     "properties": {
@@ -101,7 +104,6 @@
                 "Call Forwarded"
             ],
             "title": "The title schema",
-            "description": "An explanation about the purpose of this instance.",
             "default": "",
             "examples": [
                 "Lead Created"
@@ -111,7 +113,6 @@
             "$id": "#/properties/message",
             "type": "string",
             "title": "The message schema",
-            "description": "An explanation about the purpose of this instance.",
             "default": "",
             "examples": [
                 "New Lead Created"
@@ -121,7 +122,6 @@
             "$id": "#/properties/channelWebsite",
             "type": ["null", "string"],
             "title": "The channelWebsite schema",
-            "description": "An explanation about the purpose of this instance.",
             "default": null,
             "examples": [
                 "Manual Lead"
@@ -131,7 +131,6 @@
             "$id": "#/properties/city",
             "type": ["null", "string"],
             "title": "The city schema",
-            "description": "An explanation about the purpose of this instance.",
             "default": null,
             "examples": [
                 null
@@ -141,7 +140,6 @@
             "$id": "#/properties/email",
             "type": ["null", "string"],
             "title": "The email schema",
-            "description": "An explanation about the purpose of this instance.",
             "default": null,
             "examples": [
                 "erica@yahoo.com"
@@ -151,7 +149,6 @@
             "$id": "#/properties/externalLeadId",
             "type": ["null", "string"],
             "title": "The externalLeadId schema",
-            "description": "An explanation about the purpose of this instance.",
             "default": null,
             "examples": [
                 null
@@ -161,7 +158,6 @@
             "$id": "#/properties/firstName",
             "type": ["null", "string"],
             "title": "The firstName schema",
-            "description": "An explanation about the purpose of this instance.",
             "default": null,
             "examples": [
                 "Erica"
@@ -173,7 +169,6 @@
             "format": "uri",
             "pattern": "^urn:uuid:",
             "title": "The id schema",
-            "description": "An explanation about the purpose of this instance.",
             "default": "",
             "examples": [
                 "a14c145f-e497-4714-b3b5-eb47dde24b27"
@@ -183,7 +178,6 @@
             "$id": "#/properties/lastName",
             "type": ["null", "string"],
             "title": "The lastName schema",
-            "description": "An explanation about the purpose of this instance.",
             "default": null,
             "examples": [
                 null,
@@ -194,7 +188,6 @@
             "$id": "#/properties/leadComment",
             "type": ["null", "string"],
             "title": "The leadComment schema",
-            "description": "An explanation about the purpose of this instance.",
             "default": null,
             "examples": [
                 null,
@@ -205,7 +198,6 @@
             "$id": "#/properties/leadType",
             "type": ["null", "string"],
             "title": "The leadType schema",
-            "description": "An explanation about the purpose of this instance.",
             "default": null,
             "examples": [
                 null,
@@ -218,7 +210,6 @@
             "$id": "#/properties/link",
             "type": "string",
             "title": "The link schema",
-            "description": "An explanation about the purpose of this instance.",
             "default": "",
             "examples": [
                 "https://app.verse.io/leads/bea2632d-edf0-4978-988e-f04893f8582b"
@@ -228,7 +219,6 @@
             "$id": "#/properties/phone",
             "type": ["null", "string"],
             "title": "The phone schema",
-            "description": "An explanation about the purpose of this instance.",
             "default": null,
             "examples": [
                 null,
@@ -239,7 +229,6 @@
             "$id": "#/properties/postalCode",
             "type": ["null", "string"],
             "title": "The postalCode schema",
-            "description": "An explanation about the purpose of this instance.",
             "default": null,
             "examples": [
                 null,
@@ -250,7 +239,6 @@
             "$id": "#/properties/state",
             "type": ["null", "string"],
             "title": "The state schema",
-            "description": "An explanation about the purpose of this instance.",
             "default": null,
             "examples": [
                 null,
@@ -261,11 +249,21 @@
             "$id": "#/properties/street",
             "type": ["null", "string"],
             "title": "The street schema",
-            "description": "An explanation about the purpose of this instance.",
             "default": null,
             "examples": [
                 null,
                 "123 Main St"
+            ]
+        },
+        "userId": {
+            "$id": "#/properties/userId",
+            "type": "string",
+            "format": "uri",
+            "pattern": "^urn:uuid:",
+            "title": "The userId schema",
+            "default": "",
+            "examples": [
+                "3fc665d4-4016-4f95-a9f4-374530d41640"
             ]
         },
         "customQuestions" : {

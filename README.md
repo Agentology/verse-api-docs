@@ -255,7 +255,8 @@ The response will a status code of success of failure (if there is no lead for t
     state                   : "NC",
     street                  : "Yadkinville",
     title                   : "Verse Activity Log",
-    event                   : "lead_activity"
+    event                   : "lead_activity",
+    userId                  : "3fc665d4-4016-4f95-a9f4-374530d41640"
 }
 ```
 
@@ -326,6 +327,10 @@ outputFields: [
     {
       key: 'event',
       label: 'Verse Event'
+    },
+    {
+      key: 'userId',
+      label: 'Verse User ID'
     }
 ]
 ```
@@ -363,6 +368,7 @@ outputFields: [
     street                  : "Yadkinville",
     title                   : "Unqualified Lead",
     event                   : "lead_unqualify",
+    userId                  : "3fc665d4-4016-4f95-a9f4-374530d41640",
     customQuestions         : {},
 }
 ```
@@ -438,7 +444,11 @@ outputFields: [
     {
         key: 'event',
         label: 'Verse Event'
-    }
+    },
+    {
+        key: 'userId',
+        label: 'Verse User ID'
+    },
     {
         key: 'reasonUnqualified',
         label : 'Lead Reason Unqualified'
@@ -483,6 +493,7 @@ outputFields: [
     street                  : "Yadkinville",
     title                   : "Qualified Lead",
     event                   : "lead_qualify",
+    userId                  : "3fc665d4-4016-4f95-a9f4-374530d41640",
     customQuestions         : {},
 }
 ```
@@ -560,6 +571,10 @@ outputFields: [
         label: 'Verse Event'
     },
     {
+        key: 'userId',
+        label: 'Verse User ID'
+    },
+    {
         key: 'customQuestions',
         label: 'Custom Questions'
     },
@@ -599,6 +614,7 @@ outputFields: [
     street                  : "Yadkinville",
     title                   : "Lead Created",
     event                   : "lead_created",
+    userId                  : "3fc665d4-4016-4f95-a9f4-374530d41640"
 }
 ```
 
@@ -673,6 +689,10 @@ outputFields: [
     {
         key: 'event',
         label: 'Verse Event'
+    },
+    {
+        key: 'userId',
+        label: 'Verse User ID'
     }
 ]
 ```

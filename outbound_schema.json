@@ -25,7 +25,12 @@
             "state": null,
             "street": null,
             "userId" : "3fc665d4-4016-4f95-a9f4-374530d41640",
-            "customQuestions" : {}
+            "customQuestions" : {},
+            "customerFields" : {},
+            "owner" : {
+                "firstName" : "James",
+                "lastName" : "Bond"
+            }
         },
         {
             "event": "lead_activity",
@@ -49,14 +54,19 @@
             "postalCode": "90035",
             "state": "CA",
             "street": "5237 Sun Valley Ave",
-            "userId" : "3fc665d4-4016-4f95-a9f4-374530d41640"
+            "userId" : "3fc665d4-4016-4f95-a9f4-374530d41640",
+            "customerFields" : {},
+            "owner" : {
+                "firstName" : "James",
+                "lastName" : "Bond"
+            }
           }
     ],
     "required": [
         "event",
         "title",
         "message",
-        "channelWebsite",
+       	"channelWebsite",
         "city",
         "email",
         "externalLeadId",
@@ -67,10 +77,12 @@
         "leadType",
         "link",
         "phone",
+        "phoneCarrierType",
         "postalCode",
         "state",
         "street",
-        "userId"
+        "customerFields",
+        "owner"
     ],
     "additionalProperties": true,
     "properties": {
@@ -166,8 +178,7 @@
         "id": {
             "$id": "#/properties/id",
             "type": "string",
-            "format": "uri",
-            "pattern": "^urn:uuid:",
+            "format": "uuid",
             "title": "The id schema",
             "default": "",
             "examples": [
@@ -258,8 +269,7 @@
         "userId": {
             "$id": "#/properties/userId",
             "type": "string",
-            "format": "uri",
-            "pattern": "^urn:uuid:",
+            "format": "uuid",
             "title": "The userId schema",
             "default": "",
             "examples": [
@@ -275,6 +285,34 @@
             "examples": [
                 {},
                 { "Working with another agent?": "Yes" }
+            ]
+        },
+        "customerFields" : {
+            "$id": "#/properties/customerFields",
+            "type": "object",
+            "title": "The Custom Fields schema",
+            "description": "This schema can be an empty object or an object of strings : strings",
+            "default": {},
+            "examples": [
+                {},
+                { "utm_medium": "something" }
+            ]
+        },
+        "owner" : {
+            "$id": "#/properties/owner",
+            "type": ["object", "null"],
+            "title": "The owner schema",
+            "description": "This schema can be an empty object or an object of strings : strings",
+            "default": {},
+            "examples": [
+                {},
+                { 	"firstName" : "James",
+    				"lastName"  : "Bond",
+    				"email"     : "007@verse.io",
+    				"phone"     : "700-070-0707",
+    				"calendly"  : "https://calendly.com/verse007",
+    				"teamName"  : "007"
+                }
             ]
         }
     }

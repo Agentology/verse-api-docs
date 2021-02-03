@@ -1,68 +1,80 @@
 
-## Lead Ingestion
-### __Create Lead__
-#### Request
+
+# Verse Core API
+
+## Table of Contents
+- [Lead Ingestion](#lead-ingestion)
+    - [Create Lead](#create-lead)
+    - [Definition](#definition)
+- [End Conversation](#end-conversation)
+- [Lead Activity Notification](#lead-activity-notification)
+- [Header Codes](#header-codes)
+
+
+
+# Lead Ingestion
+## __Create Lead__
+### Request
 **Type**: Ingestion
 
 **Method**: POST /zapier HTTP/1.1
 
-**Host**: https://zapier.agentology.com/v1
+**Host**: https://api.agentology.com/v1
 
-##### Headers
+### Headers
 ```
 Content-Type: application/json
 Accept: application/json
-X-API-KEY: <Your Zapier Api Key>
+X-API-KEY: <Your Api Key>
 ```
-##### Request
+### Request
 The requests for the creation of a lead in Verse.io has the following possible parameters
 
-###### Sample
+#### Sample
+
 ``` js
 {
-     lead: {
-        firstName        : 'Buzz',
-        lastName         : 'Aldrin',
-        email            : 'buzzaldrin@verse.io',
-        phoneNumber      : '619-123-4567',
-        type             : 'buyer',
-        street           : '101 West Broadway',
-        city             : 'San Diego',
-        state            : 'CA',
-        postalCode       : '92101',
-        leadComment      : '!! Example Lead Comment !!',
-        channelWebsite   : 'Verse',
-        externalLeadId   : 'f30d896a-1317-4814-88ca-ff71c40bead1'
-    },
-    dynamic_agent: {
-        firstName: 'James',
-        lastName: 'Bond',
-        email: '007@verse.io',
-        phone: '007-070-0707',
-        calendly: 'https://calendly.com/verse007'
-    }
+    "firstName"       : 'Buzz',
+    "lastName"        : 'Aldrin',
+    "email"           : 'buzzaldrin@verse.io',
+    "phoneNumber"     : '619-123-4567',
+    "type"            : 'buyer',
+    "street"          : '101 West Broadway',
+    "city"            : 'San Diego',
+    "state"           : 'CA',
+    "postalCode"      : '92101',
+    "leadComment"     : 'Example Lead Comment',
+    "channelWebsite"  : 'Verse',
+    "zapierLeadId"    : 'f30d896a-1317-4814-88ca-ff71c40bead1'
+    "agent.firstName" : 'James',
+    "agent.lastName"  : 'Bond',
+    "agent.email"     : '007@verse.io',
+    "agent.phone"     : '700-070-0707',
+    "agent.calendly"  : 'https://calendly.com/verse007',
+    "agent.teamName"  : '007'
 }
 ```
 
-**Definition**:
+### Definition:
+
 ``` js
 inputFields: [
 	{
 		key :  'firstName',
 		type :  'string',
-		helpText:  '(First Name) Can be any value - field is capped at 85 characters.',
+		helpText:  '(First Name)',
 		label :  'First Name',
 	},
 	{
 		key :  'lastName',
 		type :  'string',
-		helpText:  '(Last Name) Can be any value - field is capped at 85 characters.',
+		helpText:  '(Last Name)',
 		label :  'Last Name',
 	},
 	{
 		key :  'email',
 		type :  'string',
-		helpText:  '(Email) Can be any value - field is capped at 125 characters.',
+		helpText:  '(Email)',
 		label :  'Email',
 	},
 	{
@@ -78,26 +90,27 @@ inputFields: [
 		label :  'Lead Type',
 		choices : {
 			buyer :  'buyer',
-			seller:  'seller',
-			mortgage:  'mortgage',
+			seller :  'seller',
+			mortgage :  'mortgage',
+			refi :  'refi',
 		},
 	},
 	{
 		key :  'street',
 		type :  'string',
-		helpText:  '(Street Address) Can be any value - field is capped at 85 characters.',
+		helpText:  '(Street Address)',
 		label :  'Street Address',
 	},
 	{
 		key :  'city',
 		type :  'string',
-		helpText:  '(City) Can be any value - field is capped at 85 characters.',
+		helpText:  '(City)',
 		label :  'City',
 	},
 	{
 		key :  'state',
 		type :  'string',
-		helpText:  '(State) Can be any value - field is capped at 85 characters.',
+		helpText:  '(State)',
 		label :  'State',
 	},
 	{
@@ -115,50 +128,63 @@ inputFields: [
 	{
 		key :  'channelWebsite',
 		type :  'string',
-		helpText:  '(Lead Source) Can be any value - field is capped at 85 characters.',
+		helpText:  '(Lead Source)',
 		label :  'Lead Source',
 	},
 	{
 		key :  'zapierLeadId',
 		type :  'string',
-		helpText:  '(External Lead Id) Should be used to reference your lead.',
+		helpText:  '(External Lead Id) Should be used to reference your lead in your system.',
 		label :  'External Lead Id',
 	},
 	{
 		key:  'agent.firstName',
 		type:  'string',
-		helpText:  '(Agent First Name) Can be any value - field is capped at 85 characters.',
-		label:  'Agent First Name'
+		helpText:  '(Owner First Name)',
+		label:  'Owner First Name'
 	},
 	{
 		key:  'agent.lastName',
 		type:  'string',
-		helpText:  '(Agent Last Name) Can be any value - field is capped at 85 characters.',
-		label:  'Agent Last Name'
+		helpText:  '(Owner Last Name)',
+		label:  'Owner Last Name'
 	},
 	{
 		key:  'agent.email',
 		type:  'string',
-		helpText:  '(Agent Email) Can be any value - field is capped at 125 characters.',
-		label:  'Agent Email'
+		helpText:  '(Owner Email)',
+		label:  'Owner  Email'
 	},
 	{
 		key:  'agent.phone',
 		type:  'string',
-		helpText:  '(Agent Phone Number) Enter the agent\'s phone number',
-		label:  'Agent Phone Number'
+		helpText:  '(Phone Number) - E164 preferred',
+		label:  'Owner Phone Number'
 	},
-	{
-		key:  'agent.calendly',
-		type:  'string',
-		helpText:  '(Agent Calendly Link) Enter the agent\'s calendly link',
-		label:  'Agent Calendly Link'
-	}
+    {
+        key: 'agent.calendly',
+        type: 'string',
+        helpText: '(Calendar Integration Link)',
+        label: 'Owner  Calendar Integration Link',
+    },
+    {
+        key: 'agent.teamName',
+        type: 'string',
+        helpText: '(Owner Team Name)',
+        label: 'Owner Team Name'
+    },
+    {
+        key: 'customFields',
+        type: 'object',
+        helpText: '(Custom Field) Additional information',
+        label: 'Custom Fields'
+    }
 ],
 ```
 
-##### Response
-The response will contain an UUID which is the ID for the lead if it is created and not blocked based on duplication rules and other user settings
+### Response
+
+The response will contain an UUID V4 which is the ID for the lead if it is created and not blocked based on duplication rules and other user settings
 
 ``` js
 {
@@ -166,74 +192,15 @@ The response will contain an UUID which is the ID for the lead if it is created 
 }
 ```
 
-### End Conversation
-#### Request
-**Type**: Ingestion
-
-**Method**: POST /zapier/end-conversation HTTP/1.1
-
-**Host**: https://zapier.agentology.com/v1
-
-##### Headers
-```
-Content-Type: application/json
-Accept: application/json
-X-API-KEY: <Your Zapier Api Key>
-```
-##### Request
-The requests ends a converation Verse.io is having with your lead
-
-###### Sample
-``` js
-{
-    "searchValue" : "buzz@aol.com"
-}
-```
-
-**Definition**:
-``` js
-inputFields: [
-    {
-        key: 'searchValue',
-        type: 'string',
-        label: 'Email or Phone',
-        helpText: 'End Conversation with a lead using this value.',
-    }
-],
-```
-
-##### Response
-The response will a status code of success of failure (if there is no lead for the search parameter, etc) and a body payload that will contain basic lead information to use in subsequent Zaps
-
-``` js
-{
-    "statusCode": 200,
-    "body"      : {
-                    firstName: 'Buzz',
-                    lastName: 'Aldrin',
-                    email: 'buzzaldrin@verse.io',
-                    phone: '619-123-4567',
-                    leadType: 'buyer',
-                    street: '101 West Broadway',
-                    city: 'San Diego',
-                    state: 'CA',
-                    postalCode: '92101',
-                    leadComment: '!! Example Lead Comment !!',
-                    leadSource: 'Zillow'
-                },
-}
-```
-
 ### Lead Activity Notification
 #### Request
 **Type**: Outbound Webhook
 
-**Method**: POST /hooks/standard/{zapier_id}/{zapier_hook_id}/
+**Method**: POST /{your url}
 
-**Host**: https://hooks.zapier.com
+**Header**: Authentication Method
 
-> Note: The `zapier_id` and `zapier_hook_id` are both set on zapier's side of the communication. We do not have any control over that.
-
+**Host**: https://{your url}
 #### Payload
 
 ##### Sample
@@ -339,11 +306,11 @@ outputFields: [
 #### Request
 **Type**: Outbound Webhook
 
-**Method**: POST /hooks/standard/{zapier_id}/{zapier_hook_id}/
+**Method**: POST /{your url}
 
-**Host**: https://hooks.zapier.com
+**Header**: Authentication Method
 
-> Note: The `zapier_id` and `zapier_hook_id` are both set on zapier's side of the communication. We do not have any control over that.
+**Host**: https://{your url}
 
 #### Payload
 
@@ -465,11 +432,11 @@ outputFields: [
 #### Request
 **Type**: Outbound Webhook
 
-**Method**: POST /hooks/standard/{zapier_id}/{zapier_hook_id}/
+**Method**: POST /{your url}
 
-**Host**: https://hooks.zapier.com
+**Header**: Authentication Method
 
-> Note: The `zapier_id` and `zapier_hook_id` are both set on zapier's side of the communication. We do not have any control over that.
+**Host**: https://{your url}
 
 #### Payload
 
@@ -499,7 +466,7 @@ outputFields: [
 ```
 
 ##### Definition
-> Note: The custom fields that are sent back are custom per user based on the original questions you designed with our CSAs
+> Note: The custom fields that are sent back are custom per user based on the original questions you designed with our CSMs
 ``` js
 outputFields: [
     {
@@ -586,11 +553,11 @@ outputFields: [
 #### Request
 **Type**: Outbound Webhook
 
-**Method**: POST /hooks/standard/{zapier_id}/{zapier_hook_id}/
+**Method**: POST /{your url}
 
-**Host**: https://hooks.zapier.com
+**Header**: Authentication Method
 
-> Note: The `zapier_id` and `zapier_hook_id` are both set on zapier's side of the communication. We do not have any control over that.
+**Host**: https://{your url}
 
 #### Payload
 
@@ -696,3 +663,51 @@ outputFields: [
     }
 ]
 ```
+
+
+#### Header Codes
+
+HTTP response codes are used to determine the status of an API request.
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Explanation</th>
+  </tr>
+  <tr>
+    <td><strong>200</strong></td>
+    <td>Successful request</td>
+  </tr>
+  <tr>
+    <td><strong>400</strong></td>
+    <td>Mal-formed request could not be processed</td>
+  </tr>
+  <tr>
+    <td><strong>401</strong></td>
+    <td>Missing or invalid authentication key/token</td>
+  </tr>
+  <tr>
+    <td><strong>403</strong></td>
+    <td>Authentication key/token does not have required permissions for this request</td>
+  </tr>
+  <tr>
+    <td><strong>404</strong></td>
+    <td>Requested resource could not be found</td>
+  </tr>
+  <tr>
+    <td><strong>409</strong></td>
+    <td>Requested conflicts with another request</td>
+  </tr>
+  <tr>
+    <td><strong>422</strong></td>
+    <td>Well-formed request could not be processed</td>
+  </tr>
+  <tr>
+    <td><strong>429</strong></td>
+    <td>Request has exceeded API rate limit</td>
+  </tr>
+  <tr>
+    <td><strong>5xx</strong></td>
+    <td>Verse server error</td>
+  </tr>
+</table>

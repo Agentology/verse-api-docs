@@ -6,8 +6,8 @@
 - [Lead Ingestion](#lead-ingestion)
     - [Create Lead](#create-lead)
     - [Definition](#definition)
-- [End Conversation](#end-conversation)
-- [Lead Activity Notification](#lead-activity-notification)
+- [Webhooks](#webhooks)
+- [Lead Notification](#lead-notification)
 - [Header Codes](#header-codes)
 
 
@@ -19,7 +19,7 @@
 
 **Method**: POST /zapier HTTP/1.1
 
-**Host**: https://api.agentology.com/v1
+**Host**: https://apis.verse.io/v1
 
 ### Headers
 ```
@@ -34,31 +34,31 @@ The requests for the creation of a lead in Verse.io has the following possible p
 
 ``` js
 {
-    "firstName"       : 'Buzz',
-    "lastName"        : 'Aldrin',
-    "email"           : 'buzzaldrin@verse.io',
-    "phoneNumber"     : '619-123-4567',
-    "type"            : 'buyer',
-    "street"          : '101 West Broadway',
-    "city"            : 'San Diego',
-    "state"           : 'CA',
-    "postalCode"      : '92101',
-    "leadComment"     : 'Example Lead Comment',
-    "channelWebsite"  : 'Verse',
-    "zapierLeadId"    : 'f30d896a-1317-4814-88ca-ff71c40bead1'
-    "agent.firstName" : 'James',
-    "agent.lastName"  : 'Bond',
-    "agent.email"     : '007@verse.io',
-    "agent.phone"     : '700-070-0707',
-    "agent.calendly"  : 'https://calendly.com/verse007',
-    "agent.teamName"  : '007'
+    "firstName"       : "Buzz",
+    "lastName"        : "Aldrin",
+    "email"           : "buzzaldrin@verse.io",
+    "phoneNumber"     : "619-123-4567",
+    "type"            : "buyer",
+    "street"          : "101 West Broadway",
+    "city"            : "San Diego",
+    "state"           : "CA",
+    "postalCode"      : "92101",
+    "leadComment"     : "Example Lead Comment",
+    "channelWebsite"  : "Verse",
+    "zapierLeadId"    : "f30d896a-1317-4814-88ca-ff71c40bead",
+    "agent.firstName" : "James",
+    "agent.lastName"  : "Bond",
+    "agent.email"     : "007@verse.io",
+    "agent.phone"     : "700-070-0707",
+    "agent.calendly"  : "https://calendly.com/verse007",
+    "agent.teamName"  : "007"
 }
 ```
 
 ### Definition:
 
 ``` js
-inputFields: [
+[
 	{
 		key :  'firstName',
 		type :  'string',
@@ -192,7 +192,8 @@ The response will contain an UUID V4 which is the ID for the lead if it is creat
 }
 ```
 
-### Lead Activity Notification
+## Webhooks
+### Lead Notification
 #### Request
 **Type**: Outbound Webhook
 
@@ -207,7 +208,7 @@ The response will contain an UUID V4 which is the ID for the lead if it is creat
 ```js
 {
     id                      : "5261a2b5-ddf7-11e8-ba7d-0a04f6df74e2",
-    channelWebsite          : "Referral Exchange",
+    channelWebsite          : "Some WEbsite",
     city                    : "Yadkinville",
     email                   : "buzz@yahoo.com",
     externalLeadId          : "5261a2b5-ddf7-11e8-ba7d-0a04f6df74e1",
@@ -223,102 +224,21 @@ The response will contain an UUID V4 which is the ID for the lead if it is creat
     street                  : "Yadkinville",
     title                   : "Verse Activity Log",
     event                   : "lead_activity",
-    userId                  : "3fc665d4-4016-4f95-a9f4-374530d41640"
+    userId                  : "3fc665d4-4016-4f95-a9f4-374530d41640",
+    customQuestions         : {},
+    customerFields          : {},
+    owner                   : {
+                                "firstName" : "James",
+                                "lastName"  : "Bond",
+                                "email"     : "007@verse.io",
+                                "phone"     : "700-070-0707",
+                                "calendly"  : "https://calendly.com/verse007",
+                                "teamName"  : "007"
+                                },
 }
-```
-
-##### Definition
-
-``` js
-outputFields: [
-    {
-      key: 'channelWebsite',
-      label: 'Lead Channel Website'
-    },
-    {
-      key: 'city',
-      label: 'Lead City'
-    },
-    {
-      key: 'email',
-      label: 'Lead Email'
-    },
-    {
-      key: 'externalLeadId',
-      label: 'External Lead Id'
-    },
-    {
-      key: 'firstName',
-      label: 'Lead First Name'
-    },
-    {
-      key: 'id',
-      label: 'Lead Id'
-    },
-    {
-      key: 'lastName',
-      label: 'Lead Last Name'
-    },
-    {
-      key: 'leadComment',
-      label: 'Lead Comment'
-    },
-    {
-      key: 'leadType',
-      label: 'Lead Type'
-    },
-    {
-      key: 'link',
-      label: 'Lead Link'
-    },
-    {
-      key: 'message',
-      label: 'Verse Note'
-    },
-    {
-      key: 'postalCode',
-      label: 'Lead Postal Code'
-    },
-    {
-      key: 'state',
-      label: 'Lead State'
-    },
-    {
-      key: 'street',
-      label: 'Lead Street Address'
-    },
-    {
-      key: 'title',
-      label: 'Verse Type'
-    },
-    {
-      key: 'event',
-      label: 'Verse Event'
-    },
-    {
-      key: 'userId',
-      label: 'Verse User ID'
-    }
-]
-```
-
-### Lead Unqualified Notification
-#### Request
-**Type**: Outbound Webhook
-
-**Method**: POST /{your url}
-
-**Header**: Authentication Method
-
-**Host**: https://{your url}
-
-#### Payload
-
-##### Sample
-> Note: `reason_unqualified` is dynamic based on the reason we deemed your lead unqualified
-```js
+---------------------------
 {
-    channelWebsite          : "Referral Exchange",
+    channelWebsite          : "Some WEbsite",
     city                    : "Yadkinville",
     email                   : "buzz@yahoo.com",
     externalLeadId          : "5261a2b5-ddf7-11e8-ba7d-0a04f6df74e1",
@@ -337,334 +257,141 @@ outputFields: [
     event                   : "lead_unqualify",
     userId                  : "3fc665d4-4016-4f95-a9f4-374530d41640",
     customQuestions         : {},
+    customerFields          : {},
+    owner                   : null,
 }
 ```
 
-##### Definition
-> Note: The custom fields that are sent back are custom per user based on the original questions you designed with our CSAs
+##### Webhook Definition
+
 ``` js
-outputFields: [
+[
     {
-        key: 'channelWebsite',
-        label: 'Lead Channel Website'
+      key: 'channelWebsite',
+      label: 'Lead Channel Website',
+      type:  'string',
+
     },
     {
-        key: 'city',
-        label: 'Lead City'
+      key: 'city',
+      label: 'Lead City',
+      type:  'string',
     },
     {
-        key: 'email',
-        label: 'Lead Email'
+      key: 'email',
+      label: 'Lead Email',
+      type:  'string',
     },
     {
-        key: 'externalLeadId',
-        label: 'External Lead Id'
+      key: 'externalLeadId',
+      label: 'External Lead Id',
+      type:  ["string", null],
     },
     {
-        key: 'firstName',
-        label: 'Lead First Name'
+      key: 'firstName',
+      label: 'Lead First Name',
+      type:  'string',
     },
     {
-        key: 'id',
-        label: 'Lead Id'
+      key: 'id',
+      label: 'Lead Id',
+      type:  'uuid',
     },
     {
-        key: 'lastName',
-        label: 'Lead Last Name'
+      key: 'lastName',
+      label: 'Lead Last Name',
+      type:  'string',
     },
     {
-        key: 'leadComment',
-        label: 'Lead Comment'
+      key: 'leadComment',
+      label: 'Lead Comment',
+      type:  'string',
     },
     {
-        key: 'leadType',
-        label: 'Lead Type'
+      key: 'leadType',
+      label: 'Lead Type',
+      type:  'string',
     },
     {
-        key: 'link',
-        label: 'Lead Link'
+      key: 'link',
+      label: 'Lead Link',
+      type:  'string',
     },
     {
-        key: 'message',
-        label: 'Verse Note'
+      key: 'message',
+      label: 'Message of the webhook - dynamic',
+      type:  'string',
     },
     {
-        key: 'phone',
-        label: 'Lead Phone'
+      key: 'postalCode',
+      label: 'Lead Postal Code',
+      type:  'string',
     },
     {
-        key: 'postalCode',
-        label: 'Lead Postal Code'
+      key: 'state',
+      label: 'Lead State',
+      type:  'string',
     },
     {
-        key: 'state',
-        label: 'Lead State'
-    },
-    {
-        key: 'street',
-        label: 'Lead Street Address'
-    },
-    {
-        key: 'title',
-        label: 'Verse Type'
-    },
-    {
-        key: 'event',
-        label: 'Verse Event'
-    },
-    {
-        key: 'userId',
-        label: 'Verse User ID'
+      key: 'street',
+      label: 'Lead Street Address',
+      type:  'string',
     },
     {
         key: 'reasonUnqualified',
-        label : 'Lead Reason Unqualified'
+        label : 'Lead Reason Unqualified',
+        note:  '{reasonUnqualified} is dynamic and only is applied to lead_unqualify and lead_activity when the lead is unqualified',
+        type:  'string',
     },
     {
         key: 'customQuestions',
-        label: 'Custom Questions'
-    },
-]
-```
-
-
-### Lead Qualified Notification
-#### Request
-**Type**: Outbound Webhook
-
-**Method**: POST /{your url}
-
-**Header**: Authentication Method
-
-**Host**: https://{your url}
-
-#### Payload
-
-##### Sample
-```js
-{
-    channelWebsite          : "Referral Exchange",
-    city                    : "Yadkinville",
-    email                   : "buzz@yahoo.com",
-    externalLeadId          : "5261a2b5-ddf7-11e8-ba7d-0a04f6df74e1",
-    firstName               : "Katrina",
-    id                      : "5261a2b5-ddf7-11e8-ba7d-0a04f6df74e2",
-    lastName                : "Jones",
-    leadComment             : "Katrina is working with an agent and is not interested in our services.",
-    leadType                : "seller",
-    link                    : "https://app.verse.io/leads/5261a2b5-ddf7-11e8-ba7d-0a04f6df74e2",
-    message                 : "We've qualified a new lead for you!",
-    phone                   : "(336) 426-8081",
-    postalCode              : null,
-    state                   : "NC",
-    street                  : "Yadkinville",
-    title                   : "Qualified Lead",
-    event                   : "lead_qualify",
-    userId                  : "3fc665d4-4016-4f95-a9f4-374530d41640",
-    customQuestions         : {},
-}
-```
-
-##### Definition
-> Note: The custom fields that are sent back are custom per user based on the original questions you designed with our CSMs
-``` js
-outputFields: [
-    {
-        key: 'channelWebsite',
-        label: 'Lead Channel Website'
-    },
-    {
-        key: 'city',
-        label: 'Lead City'
-    },
-    {
-        key: 'email',
-        label: 'Lead Email'
-    },
-    {
-        key: 'externalLeadId',
-        label: 'External Lead Id'
-    },
-    {
-        key: 'firstName',
-        label: 'Lead First Name'
-    },
-    {
-        key: 'id',
-        label: 'Lead Id'
-    },
-    {
-        key: 'lastName',
-        label: 'Lead Last Name'
-    },
-    {
-        key: 'leadComment',
-        label: 'Lead Comment'
-    },
-    {
-        key: 'leadType',
-        label: 'Lead Type'
-    },
-    {
-        key: 'link',
-        label: 'Lead Link'
-    },
-    {
-        key: 'message',
-        label: 'Verse Note'
-    },
-    {
-        key: 'phone',
-        label: 'Lead Phone'
-    },
-    {
-        key: 'postalCode',
-        label: 'Lead Postal Code'
-    },
-    {
-        key: 'state',
-        label: 'Lead State'
-    },
-    {
-        key: 'street',
-        label: 'Lead Street Address'
-    },
-    {
-        key: 'title',
-        label: 'Verse Type'
-    },
-    {
-        key: 'event',
-        label: 'Verse Event'
-    },
-    {
-        key: 'userId',
-        label: 'Verse User ID'
+        label: 'Custom Questions',
+        type:  'object',
     },
     {
         key: 'customQuestions',
-        label: 'Custom Questions'
-    },
-]
-```
-
-
-### Lead Created Notification
-#### Request
-**Type**: Outbound Webhook
-
-**Method**: POST /{your url}
-
-**Header**: Authentication Method
-
-**Host**: https://{your url}
-
-#### Payload
-
-##### Sample
-```js
-{
-    channelWebsite          : "Referral Exchange",
-    city                    : "Yadkinville",
-    email                   : "buzz@yahoo.com",
-    externalLeadId          : "5261a2b5-ddf7-11e8-ba7d-0a04f6df74e1",
-    firstName               : "Katrina",
-    id                      : "5261a2b5-ddf7-11e8-ba7d-0a04f6df74e2",
-    lastName                : "Jones",
-    leadComment             : "Katrina is working with an agent and is not interested in our services.",
-    leadType                : "seller",
-    link                    : "https://app.verse.io/leads/5261a2b5-ddf7-11e8-ba7d-0a04f6df74e2",
-    message                 : "We've qualified a new lead for you!",
-    phone                   : "(336) 426-8081",
-    postalCode              : null,
-    state                   : "NC",
-    street                  : "Yadkinville",
-    title                   : "Lead Created",
-    event                   : "lead_created",
-    userId                  : "3fc665d4-4016-4f95-a9f4-374530d41640"
-}
-```
-
-##### Definition
-> Note: The custom fields that are sent back are custom per user based on the original questions you designed with our CSAs
-``` js
-outputFields: [
-    {
-        key: 'channelWebsite',
-        label: 'Lead Channel Website'
+        label: 'Custom Questions',
+        type:  'object',
     },
     {
-        key: 'city',
-        label: 'Lead City'
+        key: 'owner',
+        label: 'Dynamic Owner (if there is one)',
+        type:  'object',
     },
     {
-        key: 'email',
-        label: 'Lead Email'
+      key: 'title',
+      label: 'Verse Type',
+      enum: [
+                "Lead Created",
+                "Qualified Lead",
+                "Unqualified Lead",
+                "Inbound SMS",
+                "Outbound SMS",
+                "Concierge Note",
+                "Outbound Email",
+                "Inbound Email",
+                "Outbound Call Attempt",
+                "Inbound Call Received",
+                "Live Transfer Attempt",
+                "Call Forwarded"
+            ]
     },
     {
-        key: 'externalLeadId',
-        label: 'External Lead Id'
+      key: 'event',
+      label: 'Verse Event'
+      enum : [
+            "lead_activity",
+            "lead_created",
+            "lead_qualify",
+            "lead_unqualify"
+        ]
     },
     {
-        key: 'firstName',
-        label: 'Lead First Name'
-    },
-    {
-        key: 'id',
-        label: 'Lead Id'
-    },
-    {
-        key: 'lastName',
-        label: 'Lead Last Name'
-    },
-    {
-        key: 'leadComment',
-        label: 'Lead Comment'
-    },
-    {
-        key: 'leadType',
-        label: 'Lead Type'
-    },
-    {
-        key: 'link',
-        label: 'Lead Link'
-    },
-    {
-        key: 'message',
-        label: 'Verse Note'
-    },
-    {
-        key: 'phone',
-        label: 'Lead Phone'
-    },
-    {
-        key: 'postalCode',
-        label: 'Lead Postal Code'
-    },
-    {
-        key: 'state',
-        label: 'Lead State'
-    },
-    {
-        key: 'street',
-        label: 'Lead Street Address'
-    },
-    {
-        key: 'title',
-        label: 'Verse Type'
-    },
-    {
-        key: 'event',
-        label: 'Verse Event'
-    },
-    {
-        key: 'userId',
-        label: 'Verse User ID'
+      key: 'userId',
+      label: 'Verse User ID'
     }
 ]
 ```
-
-
 #### Header Codes
 
 HTTP response codes are used to determine the status of an API request.

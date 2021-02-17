@@ -19,7 +19,7 @@
 
 **Method**: POST /zapier HTTP/1.1
 
-**Host**: https://apis.verse.io/v1
+**Host**: https://api.verse.io/v1
 
 ### Headers
 ```

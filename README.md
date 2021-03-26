@@ -45,13 +45,14 @@ The requests for the creation of a lead in Verse.io has the following possible p
     "postalCode"      : "92101",
     "leadComment"     : "Example Lead Comment",
     "channelWebsite"  : "Verse",
-    "zapierLeadId"    : "f30d896a-1317-4814-88ca-ff71c40bead",
+    "zapierLeadId"    : "f30d896a-1317-4814-88ca-ff71c40bead", // Should be used to reference your lead in your system.
     "agent.firstName" : "James",
     "agent.lastName"  : "Bond",
     "agent.email"     : "007@verse.io",
     "agent.phone"     : "700-070-0707",
     "agent.calendly"  : "https://calendly.com/verse007",
-    "agent.teamName"  : "007"
+    "agent.teamName"  : "007",
+    "customFields"    : {}
 }
 ```
 
@@ -161,24 +162,24 @@ The requests for the creation of a lead in Verse.io has the following possible p
 		helpText:  '(Phone Number) - E164 preferred',
 		label:  'Owner Phone Number'
 	},
-    {
-        key: 'agent.calendly',
-        type: 'string',
-        helpText: '(Calendar Integration Link)',
-        label: 'Owner  Calendar Integration Link',
-    },
-    {
-        key: 'agent.teamName',
-        type: 'string',
-        helpText: '(Owner Team Name)',
-        label: 'Owner Team Name'
-    },
-    {
-        key: 'customFields',
-        type: 'object',
-        helpText: '(Custom Field) Additional information',
-        label: 'Custom Fields'
-    }
+  {
+      key: 'agent.calendly',
+      type: 'string',
+      helpText: '(Calendar Integration Link)',
+      label: 'Owner  Calendar Integration Link',
+  },
+  {
+      key: 'agent.teamName',
+      type: 'string',
+      helpText: '(Owner Team Name)',
+      label: 'Owner Team Name'
+  },
+  {
+      key: 'customFields',
+      type: 'object<string:string>',
+      helpText: '(Custom Field) Additional information',
+      label: 'Custom Fields'
+  }
 ],
 ```
 
@@ -199,13 +200,15 @@ The response will contain an UUID V4 which is the ID for the lead if it is creat
 
 **Method**: POST /{your url}
 
-**Header**: Authentication Method
+**Header**: Authentication Bearer Token
 
 **Host**: https://{your url}
 #### Payload
 
 ##### Sample
 ```js
+Example 1.
+
 {
     id                      : "5261a2b5-ddf7-11e8-ba7d-0a04f6df74e2",
     channelWebsite          : "Some WEbsite",
@@ -236,7 +239,8 @@ The response will contain an UUID V4 which is the ID for the lead if it is creat
                                 "teamName"  : "007"
                                 },
 }
----------------------------
+
+Example 2.
 {
     channelWebsite          : "Some WEbsite",
     city                    : "Yadkinville",
@@ -295,7 +299,7 @@ The response will contain an UUID V4 which is the ID for the lead if it is creat
     {
       key: 'id',
       label: 'Lead Id',
-      type:  'uuid',
+      type:  'string<uuid>',
     },
     {
       key: 'lastName',
@@ -346,17 +350,17 @@ The response will contain an UUID V4 which is the ID for the lead if it is creat
     {
         key: 'customQuestions',
         label: 'Custom Questions',
-        type:  'object',
+        type:  'object<string:string>',
     },
     {
-        key: 'customQuestions',
-        label: 'Custom Questions',
-        type:  'object',
+        key: 'customFields',
+        label: 'Custom Fields',
+        type:  'object<string:string>',
     },
     {
         key: 'owner',
         label: 'Dynamic Owner (if there is one)',
-        type:  'object',
+        type:  'object<string:string>',
     },
     {
       key: 'title',

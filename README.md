@@ -7,7 +7,7 @@
     - [Create Lead](#create-lead)
     - [Definition](#definition)
 - [Webhooks](#webhooks)
-- [Lead Notification](#lead-notification)
+  - [Lead Notification](#lead-notification)
 - [Header Codes](#header-codes)
 
 
@@ -194,6 +194,16 @@ The response will contain an UUID V4 which is the ID for the lead if it is creat
 ```
 
 ## Webhooks
+There are 4 types of notifications
+
+`lead_activity`: Triggered for all activity related to your lead (Lead Created, Notes, Messages, Calls, Emails, and (Un)Qualification).
+
+`lead_created`: triggered when a lead is created. This is useful to be notified when you receive inbound calls.
+
+`lead_qualify`: Triggered when a lead is qualified. This will include all the _Custom Questions_ answered
+
+`lead_unqualify`: Triggered when a lead is unqualified. This will include all the _Custom Questions_ answered and the _reasonUnqualified_
+
 ### Lead Notification
 #### Request
 **Type**: Outbound Webhook
